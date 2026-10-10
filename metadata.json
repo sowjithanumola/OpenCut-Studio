@@ -1,0 +1,6 @@
+{
+  "name": "OpenCut Studio",
+  "description": "Professional browser-based non-linear video editor with multitrack timeline, real-time composition preview, color grading, audio mixing, and export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
