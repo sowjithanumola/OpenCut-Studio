@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react';
-import { useEditor } from '../../context/EditorContext';
+import { useEditor } from '@/context/EditorContext';
 
 interface PlayheadViewProps {
   timelineHeight: number;

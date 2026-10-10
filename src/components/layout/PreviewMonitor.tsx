@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { useEditor } from '../context/EditorContext';
+import { useEditor } from '@/context/EditorContext';
 import {
   Play,
   Pause,
@@ -12,7 +12,7 @@ import {
   VolumeX,
   Grid
 } from 'lucide-react';
-import { renderCompositionFrame, prepareRenderMedia } from '../services/exportEngine';
+import { renderCompositionFrame, prepareRenderMedia } from '@/services/exportEngine';
 
 export const PreviewMonitor: React.FC = () => {
   const {

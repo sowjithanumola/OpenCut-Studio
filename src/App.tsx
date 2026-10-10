@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import { EditorProvider, useEditor } from './context/EditorContext';
-import { Header } from './components/Header';
-import { MediaPanel } from './components/MediaPanel';
-import { PreviewMonitor } from './components/PreviewMonitor';
-import { InspectorPanel } from './components/InspectorPanel';
-import { TimelineContainer } from './components/Timeline/TimelineContainer';
-import { ExportModal } from './components/Modals/ExportModal';
-import { AIModal } from './components/Modals/AIModal';
-import { ProjectsModal } from './components/Modals/ProjectsModal';
-import { ShortcutsModal } from './components/Modals/ShortcutsModal';
+import { EditorProvider, useEditor } from '@/context/EditorContext';
+import { Header } from '@/components/layout/Header';
+import { MediaPanel } from '@/components/layout/MediaPanel';
+import { PreviewMonitor } from '@/components/layout/PreviewMonitor';
+import { InspectorPanel } from '@/components/layout/InspectorPanel';
+import { TimelineContainer } from '@/components/timeline/TimelineContainer';
+import { ExportModal } from '@/components/modals/ExportModal';
+import { AIModal } from '@/components/modals/AIModal';
+import { ProjectsModal } from '@/components/modals/ProjectsModal';
+import { ShortcutsModal } from '@/components/modals/ShortcutsModal';
 
 const EditorLayout: React.FC = () => {
   const {

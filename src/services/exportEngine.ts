@@ -1,4 +1,4 @@
-import { Project, MediaAsset, ExportConfig, ExportProgress, TimelineClip } from '../types/editor';
+import { Project, MediaAsset, ExportConfig, ExportProgress, TimelineClip } from '@/types/editor';
 
 export interface RenderContext {
   canvas: HTMLCanvasElement;

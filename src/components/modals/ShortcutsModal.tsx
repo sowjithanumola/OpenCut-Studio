@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEditor } from '../../context/EditorContext';
+import { useEditor } from '@/context/EditorContext';
 import { X, Keyboard } from 'lucide-react';
 
 export const ShortcutsModal: React.FC = () => {

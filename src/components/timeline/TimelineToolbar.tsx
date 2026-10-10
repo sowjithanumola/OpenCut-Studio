@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEditor } from '../../context/EditorContext';
+import { useEditor } from '@/context/EditorContext';
 import {
   MousePointer,
   Scissors,
@@ -12,7 +12,7 @@ import {
   Delete,
   Split
 } from 'lucide-react';
-import { ActiveTool } from '../../types/editor';
+import { ActiveTool } from '@/types/editor';
 
 export const TimelineToolbar: React.FC = () => {
   const {

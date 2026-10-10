@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useEditor } from '../context/EditorContext';
+import { useEditor } from '@/context/EditorContext';
 import {
   Sliders,
   Type,
@@ -13,7 +13,7 @@ import {
   Trash2,
   ChevronRight
 } from 'lucide-react';
-import { ProjectResolution } from '../types/editor';
+import { ProjectResolution } from '@/types/editor';
 
 const RESOLUTION_OPTIONS: Record<string, ProjectResolution> = {
   '1080p': { width: 1920, height: 1080, label: '16:9 Landscape (1080p)' },

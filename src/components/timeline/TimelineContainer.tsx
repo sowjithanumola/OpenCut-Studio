@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useEditor } from '../../context/EditorContext';
+import { useEditor } from '@/context/EditorContext';
 import { TimelineToolbar } from './TimelineToolbar';
 import { TimelineRuler } from './TimelineRuler';
 import { TrackHeader } from './TrackHeader';

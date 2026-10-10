@@ -7,7 +7,7 @@ import {
   MediaAsset,
   ActiveTool,
   ProjectResolution
-} from '../types/editor';
+} from '@/types/editor';
 import {
   saveProject,
   getProject,
@@ -17,13 +17,13 @@ import {
   deleteMediaAsset as deleteStoredAsset,
   exportProjectToJSON,
   importProjectFromJSON
-} from '../services/storage';
+} from '@/services/storage';
 import {
   processImportedFile,
   createSMPTEColorBarsAsset,
   createSynthAudioTrack,
   createCinematicSampleVideo
-} from '../services/mediaProcessing';
+} from '@/services/mediaProcessing';
 
 const STANDARD_RESOLUTIONS: Record<string, ProjectResolution> = {
   '1080p': { width: 1920, height: 1080, label: '16:9 Landscape (1080p)' },

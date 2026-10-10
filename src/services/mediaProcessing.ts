@@ -1,4 +1,4 @@
-import { MediaAsset, MediaType } from '../types/editor';
+import { MediaAsset, MediaType } from '@/types/editor';
 
 // Extract waveform peaks from an AudioBuffer
 export function extractWaveformPeaks(audioBuffer: AudioBuffer, targetPoints: number = 100): number[] {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useEditor } from '../../context/EditorContext';
+import { useEditor } from '@/context/EditorContext';
 import {
   X,
   Sparkles,
@@ -18,7 +18,7 @@ import {
   AICaptionItem,
   AITitleItem,
   AIEditSuggestionItem
-} from '../../services/aiService';
+} from '@/services/aiService';
 
 type AITab = 'captions' | 'titles' | 'suggestions';
 

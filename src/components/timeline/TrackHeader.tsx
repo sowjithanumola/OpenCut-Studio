@@ -1,6 +1,6 @@
 import React from 'react';
-import { TimelineTrack } from '../../types/editor';
-import { useEditor } from '../../context/EditorContext';
+import { TimelineTrack } from '@/types/editor';
+import { useEditor } from '@/context/EditorContext';
 import {
   Volume2,
   VolumeX,

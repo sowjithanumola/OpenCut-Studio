@@ -1,30 +1,10 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { GoogleGenAI } from '@google/genai';
+import { Router } from 'express';
+import { GEMINI_MODEL, generateJson, getGeminiClient } from '../gemini';
 
-dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const app = express();
-const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
-
-app.use(express.json({ limit: '50mb' }));
-
-// Lazy init Gemini SDK
-function getGeminiClient() {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    return null;
-  }
-  return new GoogleGenAI({ apiKey });
-}
+export const aiRouter = Router();
 
 // AI Captions Endpoint
-app.post('/api/ai/captions', async (req, res) => {
+aiRouter.post('/captions', async (req, res) => {
   try {
     const { mediaContext, clipDuration } = req.body;
     const ai = getGeminiClient();
@@ -62,27 +42,11 @@ Output strictly valid JSON with no markdown wrapping in this format:
   ]
 }`;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
-      contents: prompt,
-      config: {
-        responseMimeType: 'application/json',
-      }
-    });
-
-    const text = response.text || '{}';
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch {
-      // If parsing fails, extract JSON
-      const jsonMatch = text.match(/\{[\s\S]*\}/);
-      data = jsonMatch ? JSON.parse(jsonMatch[0]) : { captions: [] };
-    }
+    const data = await generateJson<{ captions?: unknown[] }>(ai, prompt, { captions: [] });
 
     return res.json({
       success: true,
-      source: 'gemini-3.8-flash',
+      source: GEMINI_MODEL,
       captions: data.captions || [],
     });
   } catch (error: any) {
@@ -95,7 +59,7 @@ Output strictly valid JSON with no markdown wrapping in this format:
 });
 
 // AI Title & Hook Suggestions Endpoint
-app.post('/api/ai/titles', async (req, res) => {
+aiRouter.post('/titles', async (req, res) => {
   try {
     const { videoTopic, style } = req.body;
     const ai = getGeminiClient();
@@ -128,26 +92,11 @@ Output strictly valid JSON:
   ]
 }`;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
-      contents: prompt,
-      config: {
-        responseMimeType: 'application/json',
-      }
-    });
-
-    const text = response.text || '{}';
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch {
-      const jsonMatch = text.match(/\{[\s\S]*\}/);
-      data = jsonMatch ? JSON.parse(jsonMatch[0]) : { titles: [] };
-    }
+    const data = await generateJson<{ titles?: unknown[] }>(ai, prompt, { titles: [] });
 
     return res.json({
       success: true,
-      source: 'gemini-3.8-flash',
+      source: GEMINI_MODEL,
       titles: data.titles || []
     });
   } catch (error: any) {
@@ -160,7 +109,7 @@ Output strictly valid JSON:
 });
 
 // AI Smart Editing / Cut Suggestions Endpoint
-app.post('/api/ai/edit-suggestions', async (req, res) => {
+aiRouter.post('/edit-suggestions', async (req, res) => {
   try {
     const { clipCount, totalDuration, style } = req.body;
     const ai = getGeminiClient();
@@ -192,26 +141,11 @@ Output strictly valid JSON:
   ]
 }`;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
-      contents: prompt,
-      config: {
-        responseMimeType: 'application/json',
-      }
-    });
-
-    const text = response.text || '{}';
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch {
-      const jsonMatch = text.match(/\{[\s\S]*\}/);
-      data = jsonMatch ? JSON.parse(jsonMatch[0]) : { suggestions: [] };
-    }
+    const data = await generateJson<{ suggestions?: unknown[] }>(ai, prompt, { suggestions: [] });
 
     return res.json({
       success: true,
-      source: 'gemini-3.8-flash',
+      source: GEMINI_MODEL,
       suggestions: data.suggestions || []
     });
   } catch (error: any) {
@@ -222,28 +156,3 @@ Output strictly valid JSON:
     });
   }
 });
-
-async function startServer() {
-  const isProd = process.env.NODE_ENV === 'production';
-
-  if (!isProd) {
-    const { createServer } = await import('vite');
-    const vite = await createServer({
-      server: { middlewareMode: true },
-      appType: 'spa'
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.resolve(__dirname, 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (_req, res) => {
-      res.sendFile(path.resolve(distPath, 'index.html'));
-    });
-  }
-
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`OpenCut Studio running on http://0.0.0.0:${PORT}`);
-  });
-}
-
-startServer();

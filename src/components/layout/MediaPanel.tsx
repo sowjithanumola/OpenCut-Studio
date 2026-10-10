@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useEditor } from '../context/EditorContext';
+import { useEditor } from '@/context/EditorContext';
 import {
   Upload,
   Video,
@@ -15,7 +15,7 @@ import {
   FileSpreadsheet,
   Film
 } from 'lucide-react';
-import { MediaAsset } from '../types/editor';
+import { MediaAsset } from '@/types/editor';
 
 type TabType = 'media' | 'generators' | 'titles' | 'transitions';
 

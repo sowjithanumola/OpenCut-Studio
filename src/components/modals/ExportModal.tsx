@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useEditor } from '../../context/EditorContext';
+import { useEditor } from '@/context/EditorContext';
 import {
   X,
   Download,
@@ -10,8 +10,8 @@ import {
   Loader2,
   Settings2
 } from 'lucide-react';
-import { ExportConfig, ExportProgress } from '../../types/editor';
-import { renderAndExportVideo } from '../../services/exportEngine';
+import { ExportConfig, ExportProgress } from '@/types/editor';
+import { renderAndExportVideo } from '@/services/exportEngine';
 
 export const ExportModal: React.FC = () => {
   const { project, mediaAssets, setActiveModal } = useEditor();

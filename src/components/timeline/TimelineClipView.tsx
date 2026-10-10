@@ -1,6 +1,6 @@
 import React, { useRef, useState, useCallback } from 'react';
-import { TimelineClip, MediaAsset } from '../../types/editor';
-import { useEditor } from '../../context/EditorContext';
+import { TimelineClip, MediaAsset } from '@/types/editor';
+import { useEditor } from '@/context/EditorContext';
 import { Video, Music, Type, Image as ImageIcon, Palette } from 'lucide-react';
 
 interface TimelineClipViewProps {

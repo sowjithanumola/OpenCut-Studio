@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useEditor } from '../../context/EditorContext';
-import { Project } from '../../types/editor';
-import { getAllProjects, deleteProject } from '../../services/storage';
+import { useEditor } from '@/context/EditorContext';
+import { Project } from '@/types/editor';
+import { getAllProjects, deleteProject } from '@/services/storage';
 import {
   X,
   FolderOpen,

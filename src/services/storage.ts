@@ -1,4 +1,4 @@
-import { Project, MediaAsset } from '../types/editor';
+import { Project, MediaAsset } from '@/types/editor';
 
 const DB_NAME = 'opencut_studio_db';
 const DB_VERSION = 1;
