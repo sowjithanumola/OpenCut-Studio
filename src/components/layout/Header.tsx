@@ -4,7 +4,6 @@ import {
   FolderOpen,
   Undo2,
   Redo2,
-  Sparkles,
   Download,
   HelpCircle,
   Save,
@@ -72,16 +71,6 @@ export const Header: React.FC = () => {
         </button>
 
         <span className="w-px h-4 bg-[#2b303c] mx-1" />
-
-        {/* AI Magic Assistant */}
-        <button
-          onClick={() => setActiveModal('ai')}
-          className="flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium text-cyan-300 bg-cyan-950/40 hover:bg-cyan-900/40 border border-cyan-800/50 rounded transition-colors whitespace-nowrap shrink-0"
-          title="AI Captions, Titles & Edit Suggestions"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-          <span>AI Magic</span>
-        </button>
 
         {/* Shortcuts */}
         <button
